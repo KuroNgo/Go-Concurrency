@@ -1,58 +1,34 @@
 package main
 
 import (
-	"context"
+	_switch "Learning-RxGo/switch"
 	"fmt"
-	"github.com/reactivex/rxgo/v2"
+	"os"
+	"os/exec"
 )
 
 func main() {
-	fmt.Println("This is a First Observable : ")
-	rxGo_First()
-	fmt.Println("This is a second Observable: ")
-	rxGo_Second()
+	var num int
 
-}
+	fmt.Println("Vui lòng chọn kiến thức trong golang về Concurrency!")
+	fmt.Println("1. Về Concurrency")
+	fmt.Println("2. Về RxGO")
 
-// A Hot Observable
-func rxGo_First() {
-	ch := make(chan rxgo.Item)
-	go func() {
-		for i := 0; i < 3; i++ {
-			ch <- rxgo.Of(i)
-		}
-		close(ch)
-	}()
-	observable := rxgo.FromChannel(ch)
+	fmt.Print("Input number: ")
+	fmt.Scan(&num)
 
-	// First Observer
-	for item := range observable.Observe() {
-		fmt.Println(item.V)
-	}
+	switch num {
+	case 1:
+		cmd := exec.Command("cmd", "/c", "cls")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+		fmt.Println("1. Về Concurrency: ")
+		_switch.Concurrency()
 
-	// Second Observer
-	for item := range observable.Observe() {
-		fmt.Println(item.V)
-	}
-
-}
-
-// A Cold Observable
-func rxGo_Second() {
-	// on the other hand, let's create a cold Observable using Defer operator
-	observable := rxgo.Defer([]rxgo.Producer{func(_ context.Context, ch chan<- rxgo.Item) {
-		for i := 0; i < 3; i++ {
-			ch <- rxgo.Of(i)
-		}
-	}})
-
-	// First Observable
-	for item := range observable.Observe() {
-		fmt.Println(item.V)
-	}
-
-	// Second Observable
-	for item := range observable.Observe() {
-		fmt.Println(item.V)
+	case 2:
+		cmd := exec.Command("cmd", "/c", "cls")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+		fmt.Println("2. Về RxGO")
 	}
 }
