@@ -1,13 +1,16 @@
 package main
 
 import (
+	_os "Learning-RxGo/os"
 	_switch "Learning-RxGo/switch"
 	"fmt"
-	"os"
-	"os/exec"
 )
 
 func main() {
+	DisplayMenu()
+}
+
+func DisplayMenu() {
 	var num int
 
 	fmt.Println("Vui lòng chọn kiến thức trong golang về Concurrency!")
@@ -19,16 +22,17 @@ func main() {
 
 	switch num {
 	case 1:
-		cmd := exec.Command("cmd", "/c", "cls")
-		cmd.Stdout = os.Stdout
-		cmd.Run()
+		_os.OperatingSystem()
 		fmt.Println("1. Về Concurrency: ")
 		_switch.Concurrency()
 
 	case 2:
-		cmd := exec.Command("cmd", "/c", "cls")
-		cmd.Stdout = os.Stdout
-		cmd.Run()
+		_os.OperatingSystem()
 		fmt.Println("2. Về RxGO")
+
+	default:
+		fmt.Println("Lựa chọn không hợp lệ. Hãy thử lại.")
+		DisplayMenu()
 	}
+
 }

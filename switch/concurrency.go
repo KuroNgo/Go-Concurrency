@@ -2,9 +2,8 @@ package _switch
 
 import (
 	"Learning-RxGo/concurrency"
+	_os "Learning-RxGo/os"
 	"fmt"
-	"os"
-	"os/exec"
 )
 
 func Concurrency() {
@@ -23,34 +22,28 @@ func Concurrency() {
 
 	switch num {
 	case 1:
-		cmd := exec.Command("cmd", "/c", "cls")
-		cmd.Stdout = os.Stdout
-		cmd.Run()
+		_os.OperatingSystem()
 		fmt.Println("Về goroutine")
 		concurrency.Goroutines()
 
 	case 2:
-		cmd := exec.Command("cmd", "/c", "cls")
-		cmd.Stdout = os.Stdout
-		cmd.Run()
+		_os.OperatingSystem()
 		fmt.Println("Về Channel")
 
 	case 3:
-		cmd := exec.Command("cmd", "/c", "cls")
-		cmd.Stdout = os.Stdout
-		cmd.Run()
+		_os.OperatingSystem()
 		fmt.Println("Về Select")
 
 	case 4:
-		cmd := exec.Command("cmd", "/c", "cls")
-		cmd.Stdout = os.Stdout
-		cmd.Run()
+		_os.OperatingSystem()
 		fmt.Println("Về Wait Group")
 
 	case 5:
-		cmd := exec.Command("cmd", "/c", "cls")
-		cmd.Stdout = os.Stdout
-		cmd.Run()
+		_os.OperatingSystem()
 		fmt.Println("Về tài liệu tham khảo")
+
+	default:
+		fmt.Println("Lựa chọn không hợp lệ. Vui lòng nhập lại")
+		Concurrency()
 	}
 }
